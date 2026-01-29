@@ -21,7 +21,7 @@ def create_app():
         quote = post_data["quote"]
         phone_number = post_data["phone"]
 
-        amount = quote.calculate_amount()
+        amount = 1  # For testing purposes, set a fixed amount
 
         access_response = get_access_token()
 
