@@ -11,6 +11,10 @@ def create_app():
     # create and configure the app
     app = Flask(__name__)
 
+    @app.route("/")
+    def index():
+        return "Hello, Mpesa!"
+
     @app.route("/mpesa_express", methods=["POST"])
     def mpesa_express():
         post_data = request.get_json()
