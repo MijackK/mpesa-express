@@ -36,7 +36,7 @@ def get_access_token():
         raise Exception(f"Failed to get M-Pesa access token: {str(e)}")
 
 
-def send_payment_request(access_token, amount, phone_number):
+def send_payment_request(access_token, amount, phone_number, callback_url):
     # Generate timestamp in YYYYMMDDHHMMSS format
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
 
@@ -57,7 +57,7 @@ def send_payment_request(access_token, amount, phone_number):
         "PartyA": phone_number,
         "PartyB": os.environ["MPESA_SHORT_CODE"],
         "PhoneNumber": phone_number,
-        "CallBackURL": os.environ["PAYMENT_CALLBACK_URL"],
+        "CallBackURL": callback_url,
         "AccountReference": "Test",
         "TransactionDesc": "Technology",
     }

@@ -11,8 +11,7 @@ def create_app():
     # create and configure the app
     app = Flask(__name__)
 
-    app.route("/mpesa_express", methods=["POST"])
-
+    @app.route("/mpesa_express", methods=["POST"])
     def mpesa_express():
         post_data = request.get_json()
         quote = post_data["quote"]
@@ -26,6 +25,7 @@ def create_app():
             access_token=access_response["access_token"],
             amount=amount,
             phone_number=phone_number,
+            callback_url=f"{request.host_url}mpesa_express_callback/{quote}",
         )
 
         try:
@@ -44,8 +44,7 @@ def create_app():
 
         return sdk_response["responseDescription"]
 
-    app.route("/mpesa_express_callback/<quote_id>", methods=["POST"])
-
+    @app.route("/mpesa_express_callback/<quote_id>", methods=["POST"])
     def mpesa_express_callback(quote_id):
         post_data = request.get_json()
         print("MPESA Callback Data:", post_data)
