@@ -67,6 +67,7 @@ def send_payment_request(access_token, amount, phone_number, callback_url):
         headers=headers,
         json=payload,
     )
+    print("mpesa response", response.text)
     response.raise_for_status()  # Raise exception for 4XX/5XX errors
     print(response.text.encode("utf8"))
 
