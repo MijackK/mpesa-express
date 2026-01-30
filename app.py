@@ -33,7 +33,7 @@ def create_app():
         )
 
         try:
-            if sdk_response.responseCode == 0:
+            if sdk_response["responseCode"] == 0:
                 request_data = json.dump(sdk_response)
                 print("Request Data:", request_data)
 
