@@ -77,6 +77,9 @@ def create_app():
 
     @app.route("/mpesa_express_callback/<quote_id>", methods=["POST"])
     def mpesa_express_callback(quote_id):
+        if not verify_safaricom_callback():
+            print("Unauthorized callback source:", request.remote_addr)
+            return " "
         post_data = request.get_json()
         stk_data = post_data.get("Body", {}).get("stkCallback", {})
 
