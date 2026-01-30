@@ -99,7 +99,7 @@ def send_payment_request(access_token, amount, phone_number, callback_url):
             raise Exception(f"M-Pesa API Error (400): {error_msg}")
 
         response.raise_for_status()  # Raise exception for other 4XX/5XX errors
-        return response
+        return response.json()
 
     except requests.exceptions.RequestException as e:
         raise Exception(f"Failed to send M-Pesa payment request: {str(e)}")

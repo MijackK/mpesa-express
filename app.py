@@ -33,12 +33,12 @@ def create_app():
         )
 
         try:
-            if sdk_response["responseCode"] == 0:
-                request_data = json.dump(sdk_response)
+            if sdk_response["ResponseCode"] == "0":
+                request_data = json.dumps(sdk_response)
                 print("Request Data:", request_data)
 
             else:
-                request_data = json.dump(sdk_response)
+                request_data = json.dumps(sdk_response)
                 print("Request Data:", request_data)
             return ""
         except Exception as e:
