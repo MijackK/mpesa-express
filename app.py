@@ -83,11 +83,9 @@ def create_app():
         post_data = request.get_json()
         stk_data = post_data.get("Body", {}).get("stkCallback", {})
 
-        if not stk_data or stk_data.get("ResultCode") != 0:
-
-            abort(400, description="Invalid callback data")
         print("MPESA Callback Data:", post_data)
         print("ID:", quote_id)
+        print(stk_data)
 
         return " "
 
